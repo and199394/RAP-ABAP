@@ -24,17 +24,12 @@ define root view entity ZC_STD_DET
       
   @EndUserText.label: 'Age'    
       Age,
-      
-  @EndUserText.label: 'Course'    
-      Course,
-  
-  @EndUserText.label: 'Course Duration'    
-      Courseduration,
-      
+          
   @EndUserText.label: 'Status'    
       Status,
       
-  @EndUserText.label: 'Gender'    
+  @EndUserText.label: 'Gender'
+  @ObjectModel.text.element: [ 'Genderdesc' ]
       Gender,
       
       Genderdesc,

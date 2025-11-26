@@ -16,8 +16,6 @@ define root view entity ZI_STD_DET
       firstname           as Firstname,
       lastname            as Lastname,
       age                 as Age,
-      course              as Course,
-      courseduration      as Courseduration,
       status              as Status,
       gender              as Gender,
       dob                 as Dob,

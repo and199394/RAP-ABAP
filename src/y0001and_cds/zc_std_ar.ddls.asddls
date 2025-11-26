@@ -24,5 +24,7 @@ define view entity ZC_STD_AR
       @EndUserText.label: 'Result'
       Semresult,
       /* Associations */
-      _student : redirected to parent ZC_STD_DET
+      _student : redirected to parent ZC_STD_DET,
+      
+      _course
 }

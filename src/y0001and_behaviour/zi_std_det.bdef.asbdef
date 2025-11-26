@@ -32,8 +32,6 @@ etag master LocalLastChangeDate
       firstname           = Firstname;
       lastname            = Lastname;
       age                 = Age;
-      course              = Course;
-      courseduration      = Courseduration;
       status              = Status;
       gender              = Gender;
       dob                 = Dob;

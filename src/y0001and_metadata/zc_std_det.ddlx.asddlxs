@@ -40,14 +40,6 @@ annotate view ZC_STD_DET with
      identification: [ { position:40, label: 'Age' } ] }
   Age;
 
-  @UI: { lineItem:[{ position:50, label: 'Course' }],
-     identification: [ { position:50, label: 'Course' } ] }
-  Course;
-
-  @UI: { lineItem:[{ position:60, label: 'Course Duration' }],
-     identification: [ { position:60, label: 'Course Duration' } ] }
-  Courseduration;
-
   @UI: { lineItem:[{ position:70, label: 'Status' },
          {  type: #FOR_ACTION, dataAction: 'setAdmitted', label: 'Set Admitted' } ],
      identification: [ { position:70, label: 'Status' },
@@ -55,12 +47,12 @@ annotate view ZC_STD_DET with
   Status;
 
   @UI: { lineItem:[{ position:80, label: 'Gender' }],
-     identification: [ { position:80, label: 'Gender' } ] }
+     identification: [ { position:80, label: 'Gender' } ], textArrangement: #TEXT_ONLY }
 
   @Consumption.valueHelpDefinition: [{ entity : { name : 'ZI_STD_GENDER', element : 'Value' },
                                      distinctValues: true,
                                      additionalBinding: [{ localElement: 'Genderdesc', element: 'Description', usage: #FILTER_AND_RESULT }] }]
-
+    
   Gender;
 
   @UI: { identification: [{ position: 85, label: '' }] }

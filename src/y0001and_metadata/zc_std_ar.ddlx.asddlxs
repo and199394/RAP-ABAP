@@ -7,29 +7,30 @@
                    title: { type: #STANDARD, label: 'Student', value: 'Id' } }
 }
 
-//@UI: {
-//    headerInfo : {  typeName: 'Academic Result Detail', typeNamePlural: 'Academic Result Details',
-//                    title: { type: #STANDARD, label: 'Academic Result Details', value: '' },
-//                    description:{ type: #STANDARD, label: 'Academic Result Details'  }
-//                 },
-//    presentationVariant: [ { sortOrder: [ { by: 'semester', direction: #ASC } ] } ]
-//}
-
-
 @Search.searchable: true
 
 
 annotate view ZC_STD_AR with
 {
 
+  @UI.facet: [ { id: 'AcademicResult',
+                 purpose: #STANDARD,
+                 type: #IDENTIFICATION_REFERENCE,
+                 label: 'Academic Result',
+                 position: 10 } ]
+
 
   @UI: { lineItem:[{ position:10, importance: #HIGH }], identification: [ { position:10, label: 'Student ID' } ]  }
-  
-  @UI.selectionField: [{ position:10 }]       
+
+  @UI.selectionField: [{ position:10 }]
   @UI.hidden: true
   Id;
 
-  @UI: { lineItem:[{ position:20, importance: #HIGH }], identification: [ { position:20, label: 'Course' } ]  }
+  @UI: { lineItem:[{ position:20, importance: #HIGH }], identification: [ { position:20, label: 'Course' } ], textArrangement: #TEXT_ONLY  }
+
+  @Consumption.valueHelpDefinition: [{ entity : { name : 'ZI_STD_COURSE', element : 'Value' },
+                                   distinctValues: true }]
+
   @Search.defaultSearchElement: true
   Course;
 
