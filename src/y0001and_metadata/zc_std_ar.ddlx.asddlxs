@@ -1,0 +1,45 @@
+@Metadata.layer: #PARTNER
+
+
+@UI : {
+    headerInfo : { typeName: 'Academic Result Detail',
+                   typeNamePlural: 'Academic Result Details',
+                   title: { type: #STANDARD, label: 'Student', value: 'Id' } }
+}
+
+//@UI: {
+//    headerInfo : {  typeName: 'Academic Result Detail', typeNamePlural: 'Academic Result Details',
+//                    title: { type: #STANDARD, label: 'Academic Result Details', value: '' },
+//                    description:{ type: #STANDARD, label: 'Academic Result Details'  }
+//                 },
+//    presentationVariant: [ { sortOrder: [ { by: 'semester', direction: #ASC } ] } ]
+//}
+
+
+@Search.searchable: true
+
+
+annotate view ZC_STD_AR with
+{
+
+
+  @UI: { lineItem:[{ position:10, importance: #HIGH }], identification: [ { position:10, label: 'Student ID' } ]  }
+  
+  @UI.selectionField: [{ position:10 }]       
+  @UI.hidden: true
+  Id;
+
+  @UI: { lineItem:[{ position:20, importance: #HIGH }], identification: [ { position:20, label: 'Course' } ]  }
+  @Search.defaultSearchElement: true
+  Course;
+
+  @UI: { lineItem:[{ position:30, importance: #HIGH }], identification: [ { position:30, label: 'Semester' } ]  }
+  @Search.defaultSearchElement: true
+  Semester;
+
+  @Search.defaultSearchElement: true
+  @UI: { lineItem:[{ position:40, importance: #HIGH }], identification: [ { position:40, label: 'Result' } ]  }
+  Semresult;
+
+
+}

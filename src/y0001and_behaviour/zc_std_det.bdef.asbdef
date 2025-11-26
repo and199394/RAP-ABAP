@@ -1,0 +1,28 @@
+projection;
+strict ( 2 );
+
+use draft;
+
+define behavior for ZC_STD_DET alias Student
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+
+  use action setAdmitted;
+
+  use association _academicres {create;}
+}
+
+define behavior for ZC_STD_AR alias AcademicResult
+{
+  use update;
+  use delete;
+  use association _student{}
+}
