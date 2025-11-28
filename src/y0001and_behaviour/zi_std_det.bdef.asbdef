@@ -1,4 +1,4 @@
-managed implementation in class zbp_i_std_det unique;
+managed with additional save implementation in class zbp_i_std_det unique;
 strict ( 2 );
 
 with draft;
@@ -7,11 +7,12 @@ define behavior for ZI_STD_DET alias Student
 persistent table zstd_det
 draft table zstd_d_det
 lock master total etag LastChangeDate
+
 authorization master ( instance )
 etag master LocalLastChangeDate
 {
-  create ( authorization : global );
-  update;
+  create ( authorization : global, features : global );
+  update ( features : instance );
   delete;
   field ( numbering : managed, readonly ) Id;
 
@@ -21,10 +22,16 @@ etag master LocalLastChangeDate
   draft action Resume;
   draft determine action Prepare;
 
+//  determination setId on modify { create; }
+
+
+  factory action CreateChild parameter ZI_STD_AR_INPUTABLE_KEY [1..*] { default function GetDefaultsForCreateChild ; }
+  side effects { action CreateChild affects $self; }
 
   association _academicres { create; with draft; }
 
   action ( features : instance ) setAdmitted result [1] $self;
+  field ( readonly : update ) firstname;
 
   mapping for zstd_det
     {
@@ -42,20 +49,32 @@ etag master LocalLastChangeDate
 
 
 define behavior for ZI_STD_AR alias AcademicResult
-persistent table zstd_ar
+//persistent table zstd_ar
 draft table zsdt_d_ar
 lock dependent by _student
 authorization dependent by _student
+with unmanaged save with full data
 //etag master <field_name>
 {
 //  create;
   update;
   delete;
+
   association _student{ with draft;}
+
 
   field ( readonly ) Id;
   field ( features : instance ) Course;
   field ( features : instance ) Semester;
+
+//  determination setId on modify { create; }
+
+  determination setKeys on save { create; }
+
+  validation checkCourse on save { create; update; field Course; }
+
+
+  static action createProjectAndRootNode parameter ZI_STD_AR_INPUTABLE_KEY result [1] $self;
 
   mapping for zstd_ar
     {

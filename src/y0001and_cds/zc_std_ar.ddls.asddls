@@ -14,8 +14,9 @@ define view entity ZC_STD_AR
 {
       @EndUserText.label: 'Student Id'
   key Id,
-
+      
       @EndUserText.label: 'Course'
+      @ObjectModel.text.element: [ '_course.Description' ]
   key Course,
 
       @EndUserText.label: 'Semester'

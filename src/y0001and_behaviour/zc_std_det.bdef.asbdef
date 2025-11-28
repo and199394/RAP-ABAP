@@ -25,4 +25,5 @@ define behavior for ZC_STD_AR alias AcademicResult
   use update;
   use delete;
   use association _student{}
+  use action createProjectAndRootNode;
 }

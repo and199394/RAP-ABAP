@@ -26,12 +26,16 @@ annotate view ZC_STD_AR with
   @UI.hidden: true
   Id;
 
-  @UI: { lineItem:[{ position:20, importance: #HIGH }], identification: [ { position:20, label: 'Course' } ], textArrangement: #TEXT_ONLY  }
+  @UI: { lineItem:[{ position:20      , importance: #HIGH, type:#FOR_ACTION }],
+//  , dataAction: 'createProjectAndRootNode', label: 'New Project' }],                   
+         identification: [ { position:20, label: 'Course' } ],
+         textArrangement: #TEXT_ONLY  }
 
   @Consumption.valueHelpDefinition: [{ entity : { name : 'ZI_STD_COURSE', element : 'Value' },
                                    distinctValues: true }]
 
   @Search.defaultSearchElement: true
+  
   Course;
 
   @UI: { lineItem:[{ position:30, importance: #HIGH }], identification: [ { position:30, label: 'Semester' } ]  }

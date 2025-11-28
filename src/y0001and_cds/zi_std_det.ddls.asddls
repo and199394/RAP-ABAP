@@ -9,8 +9,8 @@
 }
 define root view entity ZI_STD_DET
   as select from zstd_det
-  association [0..1] to ZI_STD_GENDER    as _GENDER on $projection.Gender = _GENDER.Value
-  composition [0..*] of ZI_STD_AR as _academicres
+  association [0..1] to ZI_STD_GENDER as _GENDER on $projection.Gender = _GENDER.Value
+  composition [0..*] of ZI_STD_AR     as _academicres
 {
   key id                  as Id,
       firstname           as Firstname,

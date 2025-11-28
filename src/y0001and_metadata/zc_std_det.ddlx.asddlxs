@@ -10,36 +10,65 @@
 annotate view ZC_STD_DET with
 {
 
-  @UI.facet: [ { id: 'Student',
+  @UI.facet: [ { id: 'idStudent',
+                 purpose : #HEADER,
+                 label : 'Testing',
+                 type  : #FIELDGROUP_REFERENCE,
+                 targetQualifier: 'hdStudent' 
+                 },
+                 
+               { id: 'idGeneralInfo',
+                 purpose: #STANDARD,
+                 type: #COLLECTION,
+                 label: 'General Information',
+                 position: 10 },  
+  
+               { id: 'Student',
                  purpose: #STANDARD,
                  type: #IDENTIFICATION_REFERENCE,
                  label: 'Student',
-                 position: 10 },
+                 parentId: 'idGeneralInfo',
+                 position: 10
+                 },
+               
+               { type: #FIELDGROUP_REFERENCE,
+                 label: 'Last Changed',
+                 targetQualifier: 'fgLastChanged',
+                 parentId: 'idGeneralInfo',
+                 position: 20
+                 },
+                 
+                 
                { id: 'AcademicResult',
                  purpose: #STANDARD,
                  type: #LINEITEM_REFERENCE,
                  label: 'Academic Result',
-                 position: 20,
-                 targetElement: '_academicres'
-               
-               } ]
+                 parentId: 'idGeneralInfo',
+                 position: 25,
+                 targetElement: '_academicres'               
+                 }
+           ]
 
-  @UI: { lineItem:[{ position:10, label: 'Student ID' }],
+  @UI: { lineItem:[{ position:10, label: 'Student ID' }, { type: #FOR_ACTION, dataAction: 'CreateChild', label: 'Create Child' }],
          identification: [ { position:10, label: 'Student ID' } ] }
   Id;
 
   @UI: { lineItem:[{ position:20, label: 'First Name' }],
          identification: [ { position:20, label: 'First Name' } ] }
+  @UI.fieldGroup: [ { qualifier: 'hdStudent', position: 10 } ]
   Firstname;
 
   @UI: { lineItem:[{ position:30, label: 'Last Name' }],
      identification: [ { position:30, label: 'Last Name' } ] }
+  @UI.fieldGroup: [ { qualifier: 'hdStudent', position: 20 } ]
   Lastname;
 
-  @UI: { lineItem:[{ position:40, label: 'Age' }],
+  @UI: { lineItem:[{ position:40, label: 'Age' }
+  ,{ type: #AS_DATAPOINT }],
      identification: [ { position:40, label: 'Age' } ] }
+     
   Age;
-
+  
   @UI: { lineItem:[{ position:70, label: 'Status' },
          {  type: #FOR_ACTION, dataAction: 'setAdmitted', label: 'Set Admitted' } ],
      identification: [ { position:70, label: 'Status' },
@@ -52,7 +81,6 @@ annotate view ZC_STD_DET with
   @Consumption.valueHelpDefinition: [{ entity : { name : 'ZI_STD_GENDER', element : 'Value' },
                                      distinctValues: true,
                                      additionalBinding: [{ localElement: 'Genderdesc', element: 'Description', usage: #FILTER_AND_RESULT }] }]
-    
   Gender;
 
   @UI: { identification: [{ position: 85, label: '' }] }
@@ -60,5 +88,10 @@ annotate view ZC_STD_DET with
 
   @UI: { lineItem:[{ position:90, label: 'DOB' }],
      identification: [ { position:90, label: 'DOB' } ] }
+   @UI.fieldGroup: [ { qualifier: 'DOB' } ]
   Dob;
+  
+  @UI.fieldGroup: [ { qualifier: 'fgLastChanged', position: 10 } ]
+  LastChangeDate;
+  
 }

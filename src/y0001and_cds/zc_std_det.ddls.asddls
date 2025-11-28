@@ -11,31 +11,34 @@
 @Metadata.allowExtensions: true
 define root view entity ZC_STD_DET
   as projection on ZI_STD_DET as Student
-  
+
 {
-  @EndUserText.label: 'Student Id'
+      @EndUserText.label: 'Student Id'
   key Id,
-  
-  @EndUserText.label: 'First Name'
+
+      @EndUserText.label: 'First Name'
       Firstname,
-  
-  @EndUserText.label: 'Last Name'    
+
+      @EndUserText.label: 'Last Name'
       Lastname,
-      
-  @EndUserText.label: 'Age'    
+
+      @EndUserText.label: 'Age'
       Age,
-          
-  @EndUserText.label: 'Status'    
+
+      @EndUserText.label: 'Status'
       Status,
-      
-  @EndUserText.label: 'Gender'
-  @ObjectModel.text.element: [ 'Genderdesc' ]
+
+      @EndUserText.label: 'Gender'
+      @ObjectModel.text.element: [ 'Genderdesc' ]
       Gender,
-      
+
       Genderdesc,
-      
-  @EndUserText.label: 'DOB'    
+
+      @EndUserText.label: 'DOB'
       Dob,
+
+      @EndUserText.label: 'Last Change Date'
+      LastChangeDate,
       
       _academicres : redirected to composition child ZC_STD_AR
 
